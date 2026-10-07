@@ -1,0 +1,17 @@
+<header class="aub-header">
+  <div class="aub-header__inner">
+    <a class="aub-header__logo" href="{{ routes.root_url }}" aria-label="Aubury, home">AUBURY</a>
+    <nav class="aub-header__links" aria-label="Main">
+      <a href="{{ routes.root_url }}#routine">How it works</a>
+      <a href="{{ routes.root_url }}#faq">Questions</a>
+      <a href="{{ routes.cart_url }}">Cart{% if cart.item_count > 0 %} ({{ cart.item_count }}){% endif %}</a>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Aubury header",
+  "settings": []
+}
+{% endschema %}

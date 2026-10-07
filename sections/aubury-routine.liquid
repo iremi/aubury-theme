@@ -1,0 +1,82 @@
+<section class="aub aub-band aub-band--green" id="routine">
+  <div class="aub-wrap">
+    <div class="aub-head">
+      <h2 class="aub-h2">How the routine works</h2>
+      <p class="aub-lede">Two bottles, two jobs. One clears the scalp, the other cares for it. Both are washed out again.</p>
+    </div>
+
+    <div class="aub-steps">
+      <article class="aub-step">
+        <figure class="aub-step__photo">
+          <img src="{{ 'aubury-texture-serum.jpg' | asset_img_url: '900x' }}" width="1400" height="1856" loading="lazy" alt="Clear drops of the serum">
+        </figure>
+        <div class="aub-step__body">
+          <p class="aub-step__num">Step 1 · Clarify</p>
+          <h3 class="aub-h3">Scalp Exfoliating Serum</h3>
+          <p>A liquid peel you put straight onto the scalp with the dropper, part by part. No crumbs, no scratching.</p>
+          <p class="aub-step__how">Apply to the dry scalp, leave on for 3 to 5 minutes, rinse thoroughly. Once a week.</p>
+          <ul class="aub-checks">
+            <li>Removes buildup</li>
+            <li>Hydrates and calms the scalp</li>
+            <li>Fragrance-free</li>
+          </ul>
+          <p class="aub-step__payoff">Your scalp feels clean, fresh and light.</p>
+        </div>
+      </article>
+
+      <article class="aub-step">
+        <figure class="aub-step__photo">
+          <img src="{{ 'aubury-texture-oil.jpg' | asset_img_url: '900x' }}" width="1400" height="1854" loading="lazy" alt="Golden drops of the oil">
+        </figure>
+        <div class="aub-step__body">
+          <p class="aub-step__num">Step 2 · Nourish</p>
+          <h3 class="aub-h3">Scalp Oil with Rosemary &amp; Peppermint</h3>
+          <p>A care oil made from 7 organic oils. Ready-mixed: use it straight away, nothing to dilute.</p>
+          <p class="aub-step__how">Massage into the scalp, leave on for at least 15 minutes (or overnight), then wash out. 2 to 3 times a week.</p>
+          <ul class="aub-checks">
+            <li>Nourishes scalp and hair</li>
+            <li>Refreshes the scalp</li>
+            <li>Helps reduce breakage, gives shine</li>
+          </ul>
+          <p class="aub-step__payoff">For fuller-looking hair with more shine.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="aub-week">
+      <h3 class="aub-h3">Your week with the routine</h3>
+      <ol class="aub-week__days" aria-label="Example week">
+        <li class="aub-day"><span class="aub-day__dot" aria-hidden="true">·</span><span>Mon</span></li>
+        <li class="aub-day aub-day--oil"><span class="aub-day__dot" aria-hidden="true">02</span><span>Tue</span><span class="aub-day__what">Oil</span></li>
+        <li class="aub-day"><span class="aub-day__dot" aria-hidden="true">·</span><span>Wed</span></li>
+        <li class="aub-day"><span class="aub-day__dot" aria-hidden="true">·</span><span>Thu</span></li>
+        <li class="aub-day aub-day--oil"><span class="aub-day__dot" aria-hidden="true">02</span><span>Fri</span><span class="aub-day__what">Oil</span></li>
+        <li class="aub-day"><span class="aub-day__dot" aria-hidden="true">·</span><span>Sat</span></li>
+        <li class="aub-day aub-day--peel"><span class="aub-day__dot" aria-hidden="true">01</span><span>Sun</span><span class="aub-day__what">Peel</span></li>
+      </ol>
+
+      <dl class="aub-week__legend">
+        <div>
+          <dt>Peel day, for example Sunday</dt>
+          <dd>Serum on the dry scalp, 3 to 5 minutes, rinse, then wash your hair as usual. Your scalp treatment for Sunday.</dd>
+        </div>
+        <div>
+          <dt>Oil days, for example Tuesday and Friday</dt>
+          <dd>Oil on the scalp for at least 15 minutes, or overnight. Then wash it out.</dd>
+        </div>
+        <div>
+          <dt>Why separate days</dt>
+          <dd>The serum needs a dry scalp with no oil on it, so the two steps get their own days.</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aubury routine",
+  "settings": [],
+  "presets": [{ "name": "Aubury routine" }]
+}
+{% endschema %}

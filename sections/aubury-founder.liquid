@@ -1,0 +1,38 @@
+<section class="aub aub-band">
+  <div class="aub-wrap aub-founder__grid">
+    <p class="aub-founder__quote">Not a miracle cure. A really good building block for your routine.</p>
+    <div class="aub-founder__note">
+      <p>I started Aubury because scalp care is sold with promises nobody can keep. We don't promise miracles. We don't say hair will grow back, and we don't show before-and-after pictures we can't stand behind.</p>
+      <p>What we make is a two-step routine: a peel that clears the scalp and an oil that cares for it. Both are certified natural, both are made in the EU, and every ingredient is on this page.</p>
+      <p>If you have a question, write to me. I answer myself.</p>
+      <p class="aub-founder__sign">{{ section.settings.signature }}</p>
+      <dl class="aub-facts" style="margin-top: 1.5rem">
+        <div><dt>Made in</dt><dd>The EU, in an ISO 22716 certified facility.</dd></div>
+        <div><dt>Certified</dt><dd>COSMOS Natural (serum) and COSMOS Organic (oil), by Ecocert.</dd></div>
+        <div><dt>Delivery</dt><dd>About 5 to 7 working days. We'd rather tell you now than surprise you later.</dd></div>
+        <div><dt>Contact</dt><dd><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aubury founder note",
+  "settings": [
+    {
+      "type": "text",
+      "id": "signature",
+      "label": "Signature",
+      "default": "Urban, founder of Aubury"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Contact email",
+      "default": "info@aubury.eu"
+    }
+  ],
+  "presets": [{ "name": "Aubury founder note" }]
+}
+{% endschema %}

@@ -1,0 +1,21 @@
+<div class="aub aub-trust">
+  <div class="aub-wrap">
+    <ul>
+      <li>Certified natural cosmetics (COSMOS)</li>
+      <li>Made in the EU (ISO 22716)</li>
+      <li>Fragrance-free peeling serum</li>
+      <li>8-Week Scalp Promise</li>
+      {%- if shop.enabled_payment_types contains 'klarna' -%}
+        <li>Pay later with Klarna</li>
+      {%- endif -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Aubury trust row",
+  "settings": [],
+  "presets": [{ "name": "Aubury trust row" }]
+}
+{% endschema %}

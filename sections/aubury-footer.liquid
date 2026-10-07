@@ -1,0 +1,42 @@
+<div class="aub-footer">
+  <div class="aub-footer__grid">
+    <div>
+      <p class="aub-footer__logo">AUBURY</p>
+      <p style="margin-top: 0.75rem; max-width: 24rem">A two-step scalp routine. First clarify, then nourish.</p>
+      <p class="aub-footer__fine" style="margin-top: 1.25rem">Cosmetic product. Individual results vary.<br>&copy; {{ 'now' | date: '%Y' }} Aubury</p>
+    </div>
+    <div>
+      <p class="aub-footer__head">Help</p>
+      <ul>
+        <li><a href="{{ routes.root_url }}#routine">How the routine works</a></li>
+        <li><a href="{{ routes.root_url }}#promise">8-Week Scalp Promise</a></li>
+        <li><a href="{{ routes.root_url }}#faq">Questions</a></li>
+        <li><a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a></li>
+      </ul>
+    </div>
+    {%- if shop.policies.size > 0 -%}
+      <div>
+        <p class="aub-footer__head">Legal</p>
+        <ul>
+          {%- for policy in shop.policies -%}
+            <li><a href="{{ policy.url }}">{{ policy.title }}</a></li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Aubury footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Contact email",
+      "default": "info@aubury.eu"
+    }
+  ]
+}
+{% endschema %}

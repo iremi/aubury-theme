@@ -1,0 +1,87 @@
+{% doc %}
+  Aubury brand layer: self-hosted fonts, colour tokens and the stylesheet for the
+  aubury-* sections. Rendered in <head> after Horizon's own variables so the
+  overrides below also restyle Horizon's cart, policy and page templates.
+{% enddoc %}
+
+<link rel="preload" as="font" type="font/woff2" crossorigin href="{{ 'cormorant-garamond-latin-500-normal.woff2' | asset_url }}">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="{{ 'jost-latin-400-normal.woff2' | asset_url }}">
+
+{% style %}
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('{{ 'cormorant-garamond-latin-500-normal.woff2' | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: italic;
+    font-weight: 500;
+    font-display: swap;
+    src: url('{{ 'cormorant-garamond-latin-500-italic.woff2' | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Cormorant Garamond';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: url('{{ 'cormorant-garamond-latin-600-normal.woff2' | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('{{ 'jost-latin-400-normal.woff2' | asset_url }}') format('woff2');
+  }
+  @font-face {
+    font-family: 'Jost';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: url('{{ 'jost-latin-500-normal.woff2' | asset_url }}') format('woff2');
+  }
+
+  :root {
+    --aub-green: #1F3B2F;
+    --aub-green-deep: #162B22;
+    --aub-paper: #F3EFE7;
+    --aub-card: #FBF9F4;
+    --aub-cream: #EFE8D8;
+    --aub-champagne: #C2A878;
+    --aub-champagne-ink: #7D6636;
+    --aub-ink-soft: rgb(31 59 47 / 0.72);
+    --aub-line: rgb(31 59 47 / 0.16);
+    --aub-line-on-green: rgb(239 232 216 / 0.22);
+    --aub-photo: #E7E9EC;
+    --aub-serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+    --aub-sans: 'Jost', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+
+    /* Horizon variables, so cart / policy / page templates match the brand */
+    --font-body--family: var(--aub-sans);
+    --font-subheading--family: var(--aub-sans);
+    --font-heading--family: var(--aub-serif);
+    --font-accent--family: var(--aub-sans);
+    --color-background: #F3EFE7;
+    --color-background-rgb: 243 239 231;
+    --color-foreground: #1F3B2F;
+    --color-foreground-rgb: 31 59 47;
+    --color-border: #1F3B2F;
+    --color-border-rgb: 31 59 47;
+    --color-primary-button-background: #1F3B2F;
+    --color-primary-button-border: #1F3B2F;
+    --color-primary-button-text: #EFE8D8;
+    --color-primary-button-hover-background: #162B22;
+    --color-primary-button-hover-border: #162B22;
+    --color-primary-button-hover-text: #EFE8D8;
+  }
+
+  h1, h2, h3, .h1, .h2, .h3 {
+    font-weight: 500;
+  }
+{% endstyle %}
+
+{{ 'aubury.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'aubury.js' | asset_url }}" defer></script>

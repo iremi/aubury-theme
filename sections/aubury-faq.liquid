@@ -1,0 +1,34 @@
+<section class="aub aub-band aub-band--card aub-band--rule" id="faq">
+  <div class="aub-wrap aub-wrap--narrow">
+    <div class="aub-head">
+      <h2 class="aub-h2">Questions, answered honestly</h2>
+    </div>
+
+    <div class="aub-faq">
+      {%- for block in section.blocks -%}
+        <details class="aub-faq__item" {{ block.shopify_attributes }}>
+          <summary>{{ block.settings.question }}</summary>
+          <div class="aub-faq__a">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aubury FAQ",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "question",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Answer</p>" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Aubury FAQ" }]
+}
+{% endschema %}

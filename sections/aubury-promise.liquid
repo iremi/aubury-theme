@@ -1,0 +1,38 @@
+<section class="aub aub-band aub-band--green" id="promise">
+  <div class="aub-wrap aub-promise__grid">
+    <div class="aub-stack">
+      <h2 class="aub-h2">The 8-Week Scalp Promise</h2>
+      <p class="aub-lede">Use the routine for 8 weeks as recommended. If you're not happy, we refund the price of your first routine.</p>
+      <p class="aub-small">Applies once per customer to your first routine. To claim, write to <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a> with your order number and your two photos.</p>
+    </div>
+    <ol class="aub-promise__steps">
+      <li>
+        <span class="aub-promise__n" aria-hidden="true">1</span>
+        <span><strong>Use it</strong>Serum once a week, oil 2 to 3 times a week, for 8 weeks.</span>
+      </li>
+      <li>
+        <span class="aub-promise__n" aria-hidden="true">2</span>
+        <span><strong>Photograph your part</strong>On day 1 and after 8 weeks, in the same light.</span>
+      </li>
+      <li>
+        <span class="aub-promise__n" aria-hidden="true">3</span>
+        <span><strong>Not happy? Money back</strong>Send us both photos and we refund your first routine.</span>
+      </li>
+    </ol>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Aubury promise",
+  "settings": [
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Contact email",
+      "default": "info@aubury.eu"
+    }
+  ],
+  "presets": [{ "name": "Aubury promise" }]
+}
+{% endschema %}

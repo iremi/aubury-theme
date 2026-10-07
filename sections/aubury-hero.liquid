@@ -1,0 +1,337 @@
+{%- comment -%}
+  Hero + buy box for The Scalp Routine.
+
+  The four offers are real products, looked up by handle (section settings):
+  two bundles (duo, 16-week) and the two single products. Prices always come
+  from the products, so the page can never show a price the checkout won't charge.
+  Unit prices (per 100 ml) are calculated from the price and the volume below.
+{%- endcomment -%}
+
+{%- liquid
+  assign duo = all_products[section.settings.duo_handle]
+  assign double = all_products[section.settings.double_handle]
+  assign serum = all_products[section.settings.serum_handle]
+  assign oil = all_products[section.settings.oil_handle]
+
+  assign single_shipping = section.settings.single_shipping_cents
+
+  assign selected = 'duo'
+  if product
+    if product.handle == section.settings.double_handle
+      assign selected = 'double'
+    elsif product.handle == section.settings.serum_handle
+      assign selected = 'serum'
+    elsif product.handle == section.settings.oil_handle
+      assign selected = 'oil'
+    endif
+  endif
+
+  if selected == 'duo' and duo.id == blank
+    if double.id != blank
+      assign selected = 'double'
+    elsif serum.id != blank
+      assign selected = 'serum'
+    elsif oil.id != blank
+      assign selected = 'oil'
+    endif
+  endif
+
+  assign duo_saving = 0
+  if duo.id != blank and serum.id != blank and oil.id != blank
+    assign duo_saving = serum.price | plus: oil.price | plus: single_shipping | minus: duo.price
+  endif
+  assign double_saving = 0
+  if duo.id != blank and double.id != blank
+    assign double_saving = duo.price | times: 2 | minus: double.price
+  endif
+
+  assign free_shipping_text = 'Free shipping'
+  assign single_shipping_text = single_shipping | money | prepend: 'plus ' | append: ' shipping'
+-%}
+
+<div class="aub aub-hero" id="buy">
+  <div class="aub-wrap aub-hero__grid">
+    <div class="aub-gallery">
+      <div class="aub-gallery__track" data-aub-track>
+        <figure class="aub-gallery__slide">
+          <img
+            src="{{ 'aubury-duo.jpg' | asset_img_url: '1200x' }}"
+            srcset="{{ 'aubury-duo.jpg' | asset_img_url: '600x' }} 600w, {{ 'aubury-duo.jpg' | asset_img_url: '1200x' }} 1200w, {{ 'aubury-duo.jpg' | asset_img_url: '1600x' }} 1600w"
+            sizes="(min-width: 60rem) 50vw, 100vw"
+            width="1600"
+            height="2000"
+            alt="Two Aubury dropper bottles side by side: Scalp Exfoliating Serum and Scalp Oil"
+            fetchpriority="high"
+          >
+        </figure>
+        <figure class="aub-gallery__slide aub-gallery__slide--contain">
+          <img src="{{ 'aubury-duo-boxes.jpg' | asset_img_url: '1400x' }}" width="2000" height="1333" loading="lazy" alt="Both products with their boxes">
+        </figure>
+        <figure class="aub-gallery__slide">
+          <img src="{{ 'aubury-texture-serum.jpg' | asset_img_url: '1200x' }}" width="1400" height="1856" loading="lazy" alt="Clear drops of the scalp serum">
+        </figure>
+        <figure class="aub-gallery__slide">
+          <img src="{{ 'aubury-texture-oil.jpg' | asset_img_url: '1200x' }}" width="1400" height="1854" loading="lazy" alt="Golden drops of the scalp oil">
+        </figure>
+        <figure class="aub-gallery__slide">
+          <img src="{{ 'aubury-application.jpg' | asset_img_url: '1200x' }}" width="1400" height="1856" loading="lazy" alt="A dropper applying serum to the scalp">
+        </figure>
+        <figure class="aub-gallery__slide">
+          <img src="{{ 'aubury-rosemary.jpg' | asset_img_url: '1200x' }}" width="1400" height="1854" loading="lazy" alt="Fresh rosemary sprigs">
+        </figure>
+      </div>
+      <div class="aub-gallery__thumbs">
+        {%- assign thumbs = 'aubury-duo.jpg,aubury-duo-boxes.jpg,aubury-texture-serum.jpg,aubury-texture-oil.jpg,aubury-application.jpg,aubury-rosemary.jpg' | split: ',' -%}
+        {%- for thumb in thumbs -%}
+          <button type="button" class="aub-gallery__thumb" data-aub-thumb aria-label="Show image {{ forloop.index }}" aria-current="{% if forloop.first %}true{% else %}false{% endif %}">
+            <img src="{{ thumb | asset_img_url: '200x200', crop: 'center' }}" width="200" height="200" loading="lazy" alt="">
+          </button>
+        {%- endfor -%}
+      </div>
+    </div>
+
+    <div class="aub-buy">
+      <div class="aub-buy__top">
+        <p class="aub-kicker">Two steps, for fine, limp hair</p>
+        <span class="aub-new">New</span>
+      </div>
+
+      <h1 class="aub-h1">The Scalp Routine</h1>
+
+      <p class="aub-lede">First clarify, then nourish: a liquid scalp peel and an organic scalp oil with rosemary and peppermint, for fuller-looking hair.</p>
+
+      <ul class="aub-checks">
+        <li>Removes buildup and calms the scalp</li>
+        <li>For stronger, fuller-looking hair</li>
+        <li>Helps reduce breakage, with rosemary and peppermint</li>
+        <li>Washed out, so no greasy roots during the day</li>
+      </ul>
+
+      <form
+        method="post"
+        action="{{ routes.cart_add_url }}"
+        accept-charset="UTF-8"
+        data-aub-buy
+        data-root="{{ routes.root_url | append: '/' | replace: '//', '/' }}"
+      >
+        <input type="hidden" name="form_type" value="product">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="quantity" value="1">
+        <input type="hidden" name="return_to" value="{{ routes.root_url | append: '/checkout' | replace: '//', '/' }}">
+
+        <fieldset class="aub-tiers">
+          <legend>Choose your routine</legend>
+
+          <label class="aub-tier">
+            <input
+              type="radio"
+              name="id"
+              value="{{ duo.selected_or_first_available_variant.id }}"
+              data-tier="duo"
+              data-name="The Scalp Routine"
+              data-price="{{ duo.price | money }}"
+              data-ship="{{ free_shipping_text }}"
+              {% if selected == 'duo' %}checked{% endif %}
+              {% if duo.id == blank or duo.available == false %}disabled{% endif %}
+            >
+            <span class="aub-tier__name">The Scalp Routine <span class="aub-tier__tag">Recommended to start</span></span>
+            <span class="aub-tier__price">
+              {%- if duo.id != blank -%}
+                {{ duo.price | money }}
+                <span class="aub-tier__unit">{{ duo.price | times: 100.0 | divided_by: 60 | round | money }} / 100 ml</span>
+              {%- else -%}
+                Not set up
+              {%- endif -%}
+            </span>
+            <span class="aub-tier__note">1 serum + 1 oil · about 8 weeks · free shipping</span>
+          </label>
+
+          <label class="aub-tier">
+            <input
+              type="radio"
+              name="id"
+              value="{{ double.selected_or_first_available_variant.id }}"
+              data-tier="double"
+              data-name="The 16-Week Routine"
+              data-price="{{ double.price | money }}"
+              data-ship="{{ free_shipping_text }}"
+              {% if selected == 'double' %}checked{% endif %}
+              {% if double.id == blank or double.available == false %}disabled{% endif %}
+            >
+            <span class="aub-tier__name">The 16-Week Routine <span class="aub-tier__tag aub-tier__tag--quiet">Best value</span></span>
+            <span class="aub-tier__price">
+              {%- if double.id != blank -%}
+                {{ double.price | money }}
+                <span class="aub-tier__unit">{{ double.price | times: 100.0 | divided_by: 120 | round | money }} / 100 ml</span>
+              {%- else -%}
+                Not set up
+              {%- endif -%}
+            </span>
+            <span class="aub-tier__note">2 serums + 2 oils · about 16 weeks · free shipping</span>
+          </label>
+
+          <details class="aub-singles" data-aub-singles {% if selected == 'serum' or selected == 'oil' %}open{% endif %}>
+            <summary>Buy the steps separately</summary>
+
+            <label class="aub-tier">
+              <input
+                type="radio"
+                name="id"
+                value="{{ serum.selected_or_first_available_variant.id }}"
+                data-tier="serum"
+                data-name="Scalp Exfoliating Serum"
+                data-price="{{ serum.price | money }}"
+                data-ship="{{ single_shipping_text }}"
+                {% if selected == 'serum' %}checked{% endif %}
+                {% if serum.id == blank or serum.available == false %}disabled{% endif %}
+              >
+              <span class="aub-tier__name">Step 1: Scalp Exfoliating Serum</span>
+              <span class="aub-tier__price">
+                {%- if serum.id != blank -%}
+                  {{ serum.price | money }}
+                  <span class="aub-tier__unit">{{ serum.price | times: 100.0 | divided_by: 30 | round | money }} / 100 ml</span>
+                {%- else -%}
+                  Not set up
+                {%- endif -%}
+              </span>
+              <span class="aub-tier__note">30 ml · {{ single_shipping_text }}</span>
+            </label>
+
+            <label class="aub-tier">
+              <input
+                type="radio"
+                name="id"
+                value="{{ oil.selected_or_first_available_variant.id }}"
+                data-tier="oil"
+                data-name="Scalp Oil"
+                data-price="{{ oil.price | money }}"
+                data-ship="{{ single_shipping_text }}"
+                {% if selected == 'oil' %}checked{% endif %}
+                {% if oil.id == blank or oil.available == false %}disabled{% endif %}
+              >
+              <span class="aub-tier__name">Step 2: Scalp Oil with Rosemary &amp; Peppermint</span>
+              <span class="aub-tier__price">
+                {%- if oil.id != blank -%}
+                  {{ oil.price | money }}
+                  <span class="aub-tier__unit">{{ oil.price | times: 100.0 | divided_by: 30 | round | money }} / 100 ml</span>
+                {%- else -%}
+                  Not set up
+                {%- endif -%}
+              </span>
+              <span class="aub-tier__note">30 ml · {{ single_shipping_text }}</span>
+            </label>
+          </details>
+        </fieldset>
+
+        {%- if duo_saving > 0 -%}
+          <p class="aub-small" data-aub-saving="duo" style="margin-top: 0.9rem" {% unless selected == 'duo' %}hidden{% endunless %}>
+            {{ duo_saving | money }} less than buying both steps separately, shipping included.
+          </p>
+        {%- endif -%}
+        {%- if double_saving > 0 -%}
+          <p class="aub-small" data-aub-saving="double" style="margin-top: 0.9rem" {% unless selected == 'double' %}hidden{% endunless %}>
+            {{ double_saving | money }} less than two single routines.
+          </p>
+        {%- endif -%}
+
+        <p class="aub-error" data-aub-error hidden style="margin-top: 0.9rem">
+          That didn't go through. Check your connection and try again, or write to us at {{ section.settings.email }}.
+        </p>
+
+        <button type="submit" class="aub-btn" data-aub-submit style="margin-top: 1.1rem">
+          <span>Continue to checkout</span>
+          <span class="aub-btn__price" data-aub-price>
+            {%- case selected -%}
+              {%- when 'double' -%}{{ double.price | money }}
+              {%- when 'serum' -%}{{ serum.price | money }}
+              {%- when 'oil' -%}{{ oil.price | money }}
+              {%- else -%}{{ duo.price | money }}
+            {%- endcase -%}
+          </span>
+        </button>
+      </form>
+
+      <ul class="aub-buy__meta">
+        <li>
+          <span data-aub-ship>{% if selected == 'serum' or selected == 'oil' %}{{ single_shipping_text }}{% else %}{{ free_shipping_text }}{% endif %}</span>. With you in about 5 to 7 working days.
+        </li>
+        <li>Prices include VAT.</li>
+        <li><a href="#promise">8-Week Scalp Promise</a>: not happy after 8 weeks, get your money back.</li>
+      </ul>
+
+      {%- if shop.enabled_payment_types.size > 0 -%}
+        <div class="aub-pay" aria-label="Accepted payment methods">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag }}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<div class="aub-sticky" data-aub-sticky data-visible="false">
+  <div class="aub-sticky__text">
+    <span class="aub-sticky__name" data-aub-name>The Scalp Routine</span>
+    <span data-aub-ship>{{ free_shipping_text }}</span>
+  </div>
+  <button type="button" class="aub-btn" data-aub-sticky-submit>
+    <span>Checkout</span>
+    <span class="aub-btn__price" data-aub-price>{{ duo.price | money }}</span>
+  </button>
+</div>
+
+{% schema %}
+{
+  "name": "Aubury hero + buy box",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Products behind the four offers"
+    },
+    {
+      "type": "text",
+      "id": "duo_handle",
+      "label": "Routine (1 + 1) product handle",
+      "default": "the-scalp-routine"
+    },
+    {
+      "type": "text",
+      "id": "double_handle",
+      "label": "16-week routine (2 + 2) product handle",
+      "default": "the-16-week-scalp-routine"
+    },
+    {
+      "type": "text",
+      "id": "serum_handle",
+      "label": "Serum product handle",
+      "default": "scalp-care-exfoliating-serum"
+    },
+    {
+      "type": "text",
+      "id": "oil_handle",
+      "label": "Oil product handle",
+      "default": "rosemary-hair-scalp-strengthening-oil"
+    },
+    {
+      "type": "number",
+      "id": "single_shipping_cents",
+      "label": "Shipping for single products, in cents",
+      "info": "Display only. The real rate is set in Settings > Shipping and delivery.",
+      "default": 490
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Contact email",
+      "default": "info@aubury.eu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Aubury hero + buy box"
+    }
+  ]
+}
+{% endschema %}
