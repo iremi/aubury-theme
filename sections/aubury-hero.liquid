@@ -92,11 +92,13 @@
 
     <div class="aub-buy">
       <div class="aub-buy__top">
-        <p class="aub-kicker">Two steps, for fine, limp hair</p>
+        <p class="aub-kicker">For women with fine, limp hair: the scalp routine in 2 steps</p>
         <span class="aub-new">New</span>
       </div>
 
       <h1 class="aub-h1">The Scalp Routine</h1>
+
+      <a class="aub-rating" href="#reviews" data-aub-rating hidden></a>
 
       <p class="aub-lede">First clarify, then nourish: a liquid scalp peel and an organic scalp oil with rosemary and peppermint, for fuller-looking hair.</p>
 
@@ -104,7 +106,7 @@
         <li>Removes buildup and calms the scalp</li>
         <li>For stronger, fuller-looking hair</li>
         <li>Helps reduce breakage, with rosemary and peppermint</li>
-        <li>Washed out, so no greasy roots during the day</li>
+        <li>No greasy roots: you wash it out afterwards</li>
       </ul>
 
       <form
@@ -143,7 +145,7 @@
                 Not set up
               {%- endif -%}
             </span>
-            <span class="aub-tier__note">1 serum + 1 oil · about 8 weeks · free shipping</span>
+            <span class="aub-tier__note">1 serum + 1 oil · about 8 weeks{% if duo.id != blank %} · {{ duo.price | divided_by: 56.0 | round | money }} a day{% endif %} · free shipping</span>
           </label>
 
           <label class="aub-tier">
@@ -167,7 +169,7 @@
                 Not set up
               {%- endif -%}
             </span>
-            <span class="aub-tier__note">2 serums + 2 oils · about 16 weeks · free shipping</span>
+            <span class="aub-tier__note">2 serums + 2 oils · about 16 weeks{% if double.id != blank %} · {{ double.price | divided_by: 112.0 | round | money }} a day{% endif %} · free shipping</span>
           </label>
 
           <details class="aub-singles" data-aub-singles {% if selected == 'serum' or selected == 'oil' %}open{% endif %}>

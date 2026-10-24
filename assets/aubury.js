@@ -12,7 +12,24 @@
   ready(function () {
     initGallery();
     initBuy();
+    initRating();
   });
+
+  /* ---- Star line under the title, copied from the reviews section ---- */
+  function initRating() {
+    var target = document.querySelector('[data-aub-rating]');
+    var source = document.querySelector('[data-aub-reviews]');
+    if (!target || !source) return;
+    var average = parseFloat(source.getAttribute('data-average'));
+    var count = parseInt(source.getAttribute('data-count'), 10);
+    if (!count || isNaN(average)) return;
+    var stars = source.querySelector('.aub-reviews__summary .aub-stars');
+    if (stars) target.appendChild(stars.cloneNode(true));
+    var label = document.createElement('span');
+    label.textContent = average.toFixed(1) + ' · ' + count + (count === 1 ? ' review' : ' reviews');
+    target.appendChild(label);
+    target.hidden = false;
+  }
 
   /* ---- Gallery: thumbnails scroll the snap track ---- */
   function initGallery() {

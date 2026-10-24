@@ -1,0 +1,10 @@
+{% doc %}
+  Five stars, filled to the given rating (0–5, decimals allowed).
+
+  @param {number} rating - The rating to show
+{% enddoc %}
+{%- assign pct = rating | times: 20 -%}
+<span class="aub-stars" role="img" aria-label="Rated {{ rating }} out of 5">
+  <span class="aub-stars__base" aria-hidden="true">★★★★★</span>
+  <span class="aub-stars__fill" aria-hidden="true" style="width: {{ pct }}%">★★★★★</span>
+</span>

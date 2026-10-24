@@ -1,0 +1,106 @@
+{%- comment -%}
+  Reviews, entered by hand in the theme editor (Customize → this section → Add review).
+
+  Meant for layout testing before launch. Turn "Show reviews" off, or delete the
+  review blocks, before the store goes live. Real reviews should come from a
+  reviews app that collects them from verified orders.
+
+  The average and count are written as data attributes; aubury.js copies them
+  into the star line under the product title in the hero.
+{%- endcomment -%}
+
+{%- liquid
+  assign count = 0
+  assign total = 0
+  for block in section.blocks
+    if block.type == 'review'
+      assign count = count | plus: 1
+      assign total = total | plus: block.settings.rating
+    endif
+  endfor
+  if count > 0
+    assign average = total | times: 1.0 | divided_by: count | round: 1
+  endif
+-%}
+
+{%- if section.settings.show and count > 0 -%}
+  <section class="aub aub-band" id="reviews" data-aub-reviews data-average="{{ average }}" data-count="{{ count }}">
+    <div class="aub-wrap">
+      <div class="aub-head aub-reviews__head">
+        <h2 class="aub-h2">{{ section.settings.heading }}</h2>
+        <p class="aub-reviews__summary">
+          {%- render 'aubury-stars', rating: average -%}
+          <span>{{ average }} out of 5 · {{ count }} {% if count == 1 %}review{% else %}reviews{% endif %}</span>
+        </p>
+      </div>
+
+      <div class="aub-reviews">
+        {%- for block in section.blocks -%}
+          <article class="aub-review" {{ block.shopify_attributes }}>
+            {%- render 'aubury-stars', rating: block.settings.rating -%}
+            {%- if block.settings.title != blank -%}
+              <h3 class="aub-review__title">{{ block.settings.title }}</h3>
+            {%- endif -%}
+            <div class="aub-review__body">{{ block.settings.body | newline_to_br }}</div>
+            <p class="aub-review__who">
+              <span class="aub-review__name">{{ block.settings.name }}</span>
+              {%- if block.settings.detail != blank %}, {{ block.settings.detail }}{% endif -%}
+              {%- if block.settings.date != blank %}<span class="aub-review__date">{{ block.settings.date }}</span>{% endif -%}
+            </p>
+          </article>
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- elsif request.design_mode -%}
+  <section class="aub aub-band" id="reviews">
+    <div class="aub-wrap">
+      <p class="aub-note">
+        {%- if section.settings.show -%}
+          Reviews section: add a review with "Add review" in the sidebar. It stays hidden on the store until it has at least one.
+        {%- else -%}
+          Reviews section: hidden. Turn on "Show reviews" in the sidebar to display it.
+        {%- endif -%}
+      </p>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Aubury reviews",
+  "tag": "div",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show",
+      "label": "Show reviews",
+      "info": "Turn off before launch if these are test reviews.",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "What customers say"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        { "type": "text", "id": "name", "label": "Name", "default": "Name" },
+        { "type": "text", "id": "detail", "label": "Detail (optional)", "info": "For example: 46, fine hair" },
+        { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "text", "id": "title", "label": "Title (optional)" },
+        { "type": "textarea", "id": "body", "label": "Review text", "default": "Review text" },
+        { "type": "text", "id": "date", "label": "Date (optional)", "info": "For example: October 2026" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Aubury reviews" }
+  ]
+}
+{% endschema %}
