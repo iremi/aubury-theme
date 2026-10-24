@@ -12,8 +12,15 @@
 {%- liquid
   assign count = 0
   assign total = 0
+  assign test_count = 0
   for block in section.blocks
     if block.type == 'review'
+      if block.settings.test
+        assign test_count = test_count | plus: 1
+        unless section.settings.show_test
+          continue
+        endunless
+      endif
       assign count = count | plus: 1
       assign total = total | plus: block.settings.rating
     endif
@@ -22,6 +29,10 @@
     assign average = total | times: 1.0 | divided_by: count | round: 1
   endif
 -%}
+
+{%- if request.design_mode and section.settings.show and section.settings.show_test and test_count > 0 -%}
+  <div class="aub aub-test-banner">{{ test_count }} test {% if test_count == 1 %}review is{% else %}reviews are{% endif %} showing. Untick "Show test reviews" in this section before launch. (Only visible in the theme editor.)</div>
+{%- endif -%}
 
 {%- if section.settings.show and count > 0 -%}
   <section class="aub aub-band" id="reviews" data-aub-reviews data-average="{{ average }}" data-count="{{ count }}">
@@ -34,8 +45,9 @@
         </p>
       </div>
 
-      <div class="aub-reviews">
+      <div class="aub-reviews" data-aub-review-list>
         {%- for block in section.blocks -%}
+          {%- if block.settings.test and section.settings.show_test == false -%}{%- continue -%}{%- endif -%}
           <article class="aub-review" {{ block.shopify_attributes }}>
             {%- render 'aubury-stars', rating: block.settings.rating -%}
             {%- if block.settings.title != blank -%}
@@ -50,6 +62,9 @@
           </article>
         {%- endfor -%}
       </div>
+      {%- if count > 6 -%}
+        <button type="button" class="aub-btn aub-btn--ghost aub-reviews__more" data-aub-review-more hidden>Show all {{ count }} reviews</button>
+      {%- endif -%}
     </div>
   </section>
 {%- elsif request.design_mode -%}
@@ -79,6 +94,13 @@
       "default": true
     },
     {
+      "type": "checkbox",
+      "id": "show_test",
+      "label": "Show test reviews",
+      "info": "Reviews marked 'Test review' only show while this is on. Turn off before launch.",
+      "default": true
+    },
+    {
       "type": "text",
       "id": "heading",
       "label": "Heading",
@@ -95,7 +117,8 @@
         { "type": "range", "id": "rating", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
         { "type": "text", "id": "title", "label": "Title (optional)" },
         { "type": "textarea", "id": "body", "label": "Review text", "default": "Review text" },
-        { "type": "text", "id": "date", "label": "Date (optional)", "info": "For example: October 2026" }
+        { "type": "text", "id": "date", "label": "Date (optional)", "info": "For example: October 2026" },
+        { "type": "checkbox", "id": "test", "label": "Test review", "info": "Hidden when 'Show test reviews' is off.", "default": true }
       ]
     }
   ],

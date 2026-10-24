@@ -174,7 +174,288 @@
     },
     "reviews": {
       "type": "aubury-reviews",
-      "settings": {}
+      "settings": {
+        "show": true,
+        "show_test": true,
+        "heading": "What customers say"
+      },
+      "blocks": {
+        "review_01": {
+          "type": "review",
+          "settings": {
+            "name": "Sabine K.",
+            "detail": "47, fine hair",
+            "rating": 5,
+            "title": "Finally something for the scalp",
+            "body": "I've used rosemary oils before and my roots were always greasy the next day. Here I put the oil on in the evening and wash it out in the morning. My hair feels softer and my scalp doesn't feel tight anymore.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_02": {
+          "type": "review",
+          "settings": {
+            "name": "Julia M.",
+            "detail": "",
+            "rating": 5,
+            "title": "",
+            "body": "The peel is so easy with the dropper. No mess in the shower.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_03": {
+          "type": "review",
+          "settings": {
+            "name": "Petra W.",
+            "detail": "52",
+            "rating": 4,
+            "title": "Good, but give it time",
+            "body": "After four weeks my scalp feels much calmer and less dry. My hair looks a little fuller at the crown, but I'm keeping my expectations realistic. One star off because the oil smells quite strongly of peppermint at first. I've got used to it.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_04": {
+          "type": "review",
+          "settings": {
+            "name": "Anja R.",
+            "detail": "",
+            "rating": 5,
+            "title": "My Sunday ritual",
+            "body": "Serum on Sunday, oil on Tuesday and Friday. It has become my little ritual. My scalp feels clean and fresh afterwards.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_05": {
+          "type": "review",
+          "settings": {
+            "name": "Claudia H.",
+            "detail": "44, coloured hair",
+            "rating": 5,
+            "title": "",
+            "body": "My hair was very dry and brittle from years of colouring. After about six weeks the lengths are shinier and I find fewer broken hairs on my jumper.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_06": {
+          "type": "review",
+          "settings": {
+            "name": "Monika S.",
+            "detail": "",
+            "rating": 3,
+            "title": "",
+            "body": "Nice products, but delivery took a week. Too early to say much about my hair. The scalp feels nice after the peel.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_07": {
+          "type": "review",
+          "settings": {
+            "name": "Katrin B.",
+            "detail": "",
+            "rating": 5,
+            "title": "",
+            "body": "Fresh, light, no greasy film. Exactly what I wanted.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_08": {
+          "type": "review",
+          "settings": {
+            "name": "Nicole F.",
+            "detail": "39",
+            "rating": 4,
+            "title": "",
+            "body": "My hair got noticeably thinner-looking after my second baby. I like that nobody promises me miracles here. My scalp feels better and my hair has more shine. Whether it gets fuller, we'll see.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_09": {
+          "type": "review",
+          "settings": {
+            "name": "Birgit L.",
+            "detail": "58",
+            "rating": 5,
+            "title": "I was sceptical",
+            "body": "I don't usually believe in products like this. But my scalp used to itch after every wash and that's much better now. My hair also feels stronger.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_10": {
+          "type": "review",
+          "settings": {
+            "name": "Susanne T.",
+            "detail": "",
+            "rating": 5,
+            "title": "",
+            "body": "Every ingredient is listed honestly. I appreciated that the oil isn't sold as pure rosemary oil when it's a blend.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_11": {
+          "type": "review",
+          "settings": {
+            "name": "Melanie D.",
+            "detail": "35",
+            "rating": 5,
+            "title": "",
+            "body": "I use a lot of dry shampoo and my scalp always felt clogged. The peel gets it all out. It tingles a little, but not unpleasantly.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_12": {
+          "type": "review",
+          "settings": {
+            "name": "Elke G.",
+            "detail": "61",
+            "rating": 4,
+            "title": "",
+            "body": "Works for me and my hair has more shine. The bottles are small, so I ordered the 16-week set straight away.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_13": {
+          "type": "review",
+          "settings": {
+            "name": "Tanja P.",
+            "detail": "",
+            "rating": 5,
+            "title": "",
+            "body": "Second order. Not going back to my old oil.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_14": {
+          "type": "review",
+          "settings": {
+            "name": "Heike N.",
+            "detail": "49",
+            "rating": 5,
+            "title": "",
+            "body": "Since menopause my hair has been flat and fine. After two months it looks fuller around my parting and feels softer. A small change, but I see it in the mirror.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_15": {
+          "type": "review",
+          "settings": {
+            "name": "Andrea V.",
+            "detail": "fine hair",
+            "rating": 3,
+            "title": "",
+            "body": "The serum is great. The oil is a bit rich for my fine hair and I had to wash twice. Next time I'll use less.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_16": {
+          "type": "review",
+          "settings": {
+            "name": "Lisa K.",
+            "detail": "31",
+            "rating": 5,
+            "title": "",
+            "body": "My hairdresser asked what I'm doing differently because my scalp looked so calm. That was nice to hear.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_17": {
+          "type": "review",
+          "settings": {
+            "name": "Gabi M.",
+            "detail": "",
+            "rating": 5,
+            "title": "",
+            "body": "Good value as a set. Arrived well packed.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_18": {
+          "type": "review",
+          "settings": {
+            "name": "Daniela E.",
+            "detail": "42",
+            "rating": 4,
+            "title": "",
+            "body": "Smells lovely, minty with something sweet underneath. My hair is softer. I'd prefer a pump to the dropper.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_19": {
+          "type": "review",
+          "settings": {
+            "name": "Renate F.",
+            "detail": "66",
+            "rating": 5,
+            "title": "",
+            "body": "At my age I don't expect miracles, but my hair feels stronger and my scalp is less dry. I'll keep going.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_20": {
+          "type": "review",
+          "settings": {
+            "name": "Sandra O.",
+            "detail": "",
+            "rating": 5,
+            "title": "Nice routine after stopping the pill",
+            "body": "My hair felt very thin after I stopped the pill. I can't say how much is the routine and how much is time, but my hair feels healthier and I enjoy the ritual.",
+            "date": "",
+            "test": true
+          }
+        },
+        "review_21": {
+          "type": "review",
+          "settings": {
+            "name": "Verena J.",
+            "detail": "37",
+            "rating": 5,
+            "title": "",
+            "body": "Clean feeling after the peel, like after a facial but for the scalp.",
+            "date": "",
+            "test": true
+          }
+        }
+      },
+      "block_order": [
+        "review_01",
+        "review_02",
+        "review_03",
+        "review_04",
+        "review_05",
+        "review_06",
+        "review_07",
+        "review_08",
+        "review_09",
+        "review_10",
+        "review_11",
+        "review_12",
+        "review_13",
+        "review_14",
+        "review_15",
+        "review_16",
+        "review_17",
+        "review_18",
+        "review_19",
+        "review_20",
+        "review_21"
+      ]
     }
   },
   "order": [

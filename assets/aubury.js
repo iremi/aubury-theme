@@ -13,6 +13,7 @@
     initGallery();
     initBuy();
     initRating();
+    initReviewList();
   });
 
   /* ---- Star line under the title, copied from the reviews section ---- */
@@ -29,6 +30,19 @@
     label.textContent = average.toFixed(1) + ' · ' + count + (count === 1 ? ' review' : ' reviews');
     target.appendChild(label);
     target.hidden = false;
+  }
+
+  /* ---- Reviews: show six, reveal the rest on request ---- */
+  function initReviewList() {
+    var list = document.querySelector('[data-aub-review-list]');
+    var more = document.querySelector('[data-aub-review-more]');
+    if (!list || !more) return;
+    list.classList.add('aub-reviews--collapsed');
+    more.hidden = false;
+    more.addEventListener('click', function () {
+      list.classList.remove('aub-reviews--collapsed');
+      more.hidden = true;
+    });
   }
 
   /* ---- Gallery: thumbnails scroll the snap track ---- */

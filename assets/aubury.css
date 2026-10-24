@@ -119,7 +119,24 @@
 
 .aub-lede {
   font-size: 1.125rem;
-  max-width: 34rem;
+  max-width: 38rem;
+  text-wrap: pretty;
+}
+
+.aub-h2,
+.aub-h3 {
+  text-wrap: balance;
+}
+
+/* Sentence breaks that only apply where the line is wide enough */
+.aub-br {
+  display: none;
+}
+
+@media (min-width: 48rem) {
+  .aub-br {
+    display: inline;
+  }
 }
 
 .aub-kicker {
@@ -1436,4 +1453,32 @@
   .aub-review {
     padding: 1.5rem;
   }
+}
+
+.aub-test-banner {
+  padding: 0.6rem 1.25rem;
+  background: #F6E7B8;
+  color: #4A3B0B;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.aub-reviews--collapsed .aub-review:nth-child(n + 7) {
+  display: none;
+}
+
+.aub-btn--ghost {
+  width: auto;
+  margin-top: 1.75rem;
+  background: transparent;
+  color: var(--aub-green);
+}
+
+.aub-btn--ghost:hover {
+  background: var(--aub-green);
+  color: var(--aub-cream);
+}
+
+.aub-btn[hidden] {
+  display: none;
 }
